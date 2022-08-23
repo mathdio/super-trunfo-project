@@ -39,8 +39,7 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    });
-    this.checkForm();
+    }, () => { this.checkForm(); });
   };
 
   render() {
