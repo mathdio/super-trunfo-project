@@ -10,8 +10,28 @@ class App extends React.Component {
     attr2: '',
     attr3: '',
     image: '',
-    rarity: '',
+    rarity: 'normal',
     isSuperTrunfo: false,
+    saveButtonDisabled: true,
+  };
+
+  checkForm = () => {
+    const {
+      name, description, attr1, attr2, attr3, image, rarity,
+    } = this.state;
+    const sumAttr = Number(attr1) + Number(attr2) + Number(attr3);
+    const attrLimit = 210;
+    const attrMin = 0;
+    const attrMax = 90;
+    if (name === '' || description === '' || image === ''
+    || rarity === '' || attr1 === '' || attr2 === '' || attr3 === ''
+    || sumAttr > attrLimit || Number(attr1) > attrMax
+    || Number(attr1) < attrMin || Number(attr2) > attrMax
+    || Number(attr2) < attrMin || Number(attr3) > attrMax || Number(attr3) < attrMin) {
+      this.setState({ saveButtonDisabled: true });
+    } else {
+      this.setState({ saveButtonDisabled: false });
+    }
   };
 
   handleChange = ({ target }) => {
@@ -20,12 +40,13 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     });
+    this.checkForm();
   };
 
   render() {
     const {
       name, description, attr1, attr2, attr3, image,
-      rarity, isSuperTrunfo,
+      rarity, isSuperTrunfo, saveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -40,7 +61,7 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
           hasTrunfo={ false }
-          isSaveButtonDisabled={ false }
+          isSaveButtonDisabled={ saveButtonDisabled }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ () => {} }
         />
