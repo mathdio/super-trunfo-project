@@ -14,6 +14,14 @@ class App extends React.Component {
     isSuperTrunfo: false,
   };
 
+  handleChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
+
   render() {
     const {
       name, description, attr1, attr2, attr3, image,
@@ -33,18 +41,18 @@ class App extends React.Component {
           cardTrunfo={ isSuperTrunfo }
           hasTrunfo={ false }
           isSaveButtonDisabled={ false }
-          onInputChange={ () => {} }
+          onInputChange={ this.handleChange }
           onSaveButtonClick={ () => {} }
         />
         <Card
-          cardName=""
-          cardDescription=""
-          cardAttr1=""
-          cardAttr2=""
-          cardAttr3=""
-          cardImage=""
-          cardRare=""
-          cardTrunfo={ false }
+          cardName={ name }
+          cardDescription={ description }
+          cardAttr1={ attr1 }
+          cardAttr2={ attr2 }
+          cardAttr3={ attr3 }
+          cardImage={ image }
+          cardRare={ rarity }
+          cardTrunfo={ isSuperTrunfo }
         />
       </div>
     );
