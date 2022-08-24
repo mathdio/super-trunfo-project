@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import CardList from './components/CardList';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -16,13 +17,6 @@ class App extends React.Component {
     savedCards: [],
     hasTrunfo: false,
   };
-
-  // checkSuperTrunfo = () => {
-  //   const { savedCards } = this.state;
-  //   if (savedCards.some((card) => card.isSuperTrunfo)) {
-  //     this.setState({ hasTrunfo: true });
-  //   }
-  // };
 
   saveCard = () => {
     const {
@@ -85,7 +79,7 @@ class App extends React.Component {
 
   render() {
     const {
-      name, description, attr1, attr2, attr3, image,
+      name, description, attr1, attr2, attr3, image, savedCards,
       rarity, isSuperTrunfo, saveButtonDisabled, hasTrunfo,
     } = this.state;
     return (
@@ -101,7 +95,6 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
           hasTrunfo={ hasTrunfo }
-          // savedCards={ savedCards }
           isSaveButtonDisabled={ saveButtonDisabled }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.saveCard }
@@ -116,6 +109,7 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
         />
+        <CardList savedCards={ savedCards } />
       </div>
     );
   }
