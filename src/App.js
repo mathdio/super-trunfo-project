@@ -18,6 +18,23 @@ class App extends React.Component {
     hasTrunfo: false,
   };
 
+  renderCheckbox = () => {
+    const { savedCards } = this.state;
+    if (savedCards.some((card) => card.isSuperTrunfo)) {
+      console.log(savedCards);
+      this.setState({ hasTrunfo: true });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
+  };
+
+  deleteCard = ({ target }) => {
+    const { name } = target;
+    const { savedCards } = this.state;
+    const newDeck = savedCards.filter((card) => card.name !== name);
+    this.setState({ savedCards: newDeck }, () => this.renderCheckbox());
+  };
+
   saveCard = () => {
     const {
       name, description, attr1, attr2, attr3, image, rarity, isSuperTrunfo,
@@ -42,10 +59,10 @@ class App extends React.Component {
         attr2: 0,
         attr3: 0,
         rarity: 'normal',
-      });
+      }, () => this.checkForm());
       const { savedCards } = this.state;
       if (savedCards.some((card) => card.isSuperTrunfo)) {
-        this.setState({ hasTrunfo: true });
+        this.setState({ hasTrunfo: true, isSuperTrunfo: false });
       }
     });
   };
@@ -109,7 +126,7 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
         />
-        <CardList savedCards={ savedCards } />
+        <CardList savedCards={ savedCards } deleteCard={ this.deleteCard } />
       </div>
     );
   }
