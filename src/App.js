@@ -14,11 +14,19 @@ class App extends React.Component {
     isSuperTrunfo: false,
     saveButtonDisabled: true,
     savedCards: [],
+    hasTrunfo: false,
   };
+
+  // checkSuperTrunfo = () => {
+  //   const { savedCards } = this.state;
+  //   if (savedCards.some((card) => card.isSuperTrunfo)) {
+  //     this.setState({ hasTrunfo: true });
+  //   }
+  // };
 
   saveCard = () => {
     const {
-      name, description, attr1, attr2, attr3, image, rarity,
+      name, description, attr1, attr2, attr3, image, rarity, isSuperTrunfo,
     } = this.state;
     this.setState((prevState) => ({
       savedCards: [...prevState.savedCards, {
@@ -29,16 +37,23 @@ class App extends React.Component {
         attr3,
         image,
         rarity,
+        isSuperTrunfo,
       }],
-    }), this.setState({
-      name: '',
-      description: '',
-      image: '',
-      attr1: 0,
-      attr2: 0,
-      attr3: 0,
-      rarity: 'normal',
-    }));
+    }), () => {
+      this.setState({
+        name: '',
+        description: '',
+        image: '',
+        attr1: 0,
+        attr2: 0,
+        attr3: 0,
+        rarity: 'normal',
+      });
+      const { savedCards } = this.state;
+      if (savedCards.some((card) => card.isSuperTrunfo)) {
+        this.setState({ hasTrunfo: true });
+      }
+    });
   };
 
   checkForm = () => {
@@ -71,7 +86,7 @@ class App extends React.Component {
   render() {
     const {
       name, description, attr1, attr2, attr3, image,
-      rarity, isSuperTrunfo, saveButtonDisabled,
+      rarity, isSuperTrunfo, saveButtonDisabled, savedCards, hasTrunfo,
     } = this.state;
     return (
       <div>
@@ -85,7 +100,8 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
-          hasTrunfo={ false }
+          hasTrunfo={ hasTrunfo }
+          // savedCards={ savedCards }
           isSaveButtonDisabled={ saveButtonDisabled }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.saveCard }
