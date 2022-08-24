@@ -13,6 +13,24 @@ class App extends React.Component {
     rarity: 'normal',
     isSuperTrunfo: false,
     saveButtonDisabled: true,
+    savedCards: [],
+  };
+
+  saveCard = () => {
+    const {
+      name, description, attr1, attr2, attr3, image, rarity,
+    } = this.state;
+    this.setState((prevState) => ({
+      savedCards: [...prevState.savedCards, {
+        name,
+        description,
+        attr1,
+        attr2,
+        attr3,
+        image,
+        rarity,
+      }],
+    }));
   };
 
   checkForm = () => {
@@ -62,7 +80,7 @@ class App extends React.Component {
           hasTrunfo={ false }
           isSaveButtonDisabled={ saveButtonDisabled }
           onInputChange={ this.handleChange }
-          onSaveButtonClick={ () => {} }
+          onSaveButtonClick={ this.saveCard }
         />
         <Card
           cardName={ name }
