@@ -30,6 +30,14 @@ class App extends React.Component {
         image,
         rarity,
       }],
+    }), this.setState({
+      name: '',
+      description: '',
+      image: '',
+      attr1: 0,
+      attr2: 0,
+      attr3: 0,
+      rarity: 'normal',
     }));
   };
 

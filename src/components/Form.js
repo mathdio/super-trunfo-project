@@ -80,6 +80,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="raridade">
+          Raridade
           <select
             name="rarity"
             data-testid="rare-input"
