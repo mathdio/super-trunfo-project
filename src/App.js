@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import CardList from './components/CardList';
+import Filters from './components/Filters';
 import Form from './components/Form';
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
     saveButtonDisabled: true,
     savedCards: [],
     hasTrunfo: false,
+    nameFilter: '',
   };
 
   renderCheckbox = () => {
@@ -98,6 +100,7 @@ class App extends React.Component {
     const {
       name, description, attr1, attr2, attr3, image, savedCards,
       rarity, isSuperTrunfo, saveButtonDisabled, hasTrunfo,
+      nameFilter,
     } = this.state;
     return (
       <div>
@@ -127,6 +130,11 @@ class App extends React.Component {
           cardTrunfo={ isSuperTrunfo }
         />
         <CardList savedCards={ savedCards } deleteCard={ this.deleteCard } />
+        <Filters
+          savedCards={ savedCards }
+          nameFilter={ nameFilter }
+          onInputChange={ this.handleChange }
+        />
       </div>
     );
   }
