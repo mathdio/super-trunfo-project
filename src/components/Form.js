@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Checkbox from './Checkbox';
 
 class Form extends React.Component {
   render() {
@@ -95,17 +96,7 @@ class Form extends React.Component {
         </label>
         { hasTrunfo === true
           ? <p>Você já tem um Super Trunfo em seu baralho</p>
-          : <label htmlFor="isSuperTrunfo">
-            É Super Trunfo?
-            <input
-              name="isSuperTrunfo"
-              type="checkbox"
-              data-testid="trunfo-input"
-              id="isSuperTrunfo"
-              onChange={ onInputChange }
-              checked={ cardTrunfo }
-            />
-          </label> }
+          : <Checkbox onInputChange={ onInputChange } cardTrunfo={ cardTrunfo } /> }
         <button
           type="button"
           data-testid="save-button"

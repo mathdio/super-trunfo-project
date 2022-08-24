@@ -86,7 +86,7 @@ class App extends React.Component {
   render() {
     const {
       name, description, attr1, attr2, attr3, image,
-      rarity, isSuperTrunfo, saveButtonDisabled, savedCards, hasTrunfo,
+      rarity, isSuperTrunfo, saveButtonDisabled, hasTrunfo,
     } = this.state;
     return (
       <div>
