@@ -4,16 +4,23 @@ import Card from './Card';
 
 class CardList extends React.Component {
   render() {
-    const { savedCards, deleteCard, nameFilter, rareFilter } = this.props;
+    const { savedCards, deleteCard, nameFilter, rareFilter, trunfoFilter } = this.props;
     return (
       <div>
         {savedCards.filter((card) => card.name.match(nameFilter))
           .filter((card) => {
+            if (trunfoFilter === true) {
+              return card.isSuperTrunfo === true;
+            }
             if (rareFilter === 'todas') {
               return card;
             }
             return card.rarity === rareFilter;
           })
+          // .find((card) => {
+          //   const { isSuperTrunfo } = card;
+          //   return isSuperTrunfo === true;
+          // })
           .map((card) => {
             const {
               name, description, attr1, attr2,
@@ -52,6 +59,8 @@ CardList.propTypes = {
   deleteCard: PropTypes.func,
   nameFilter: PropTypes.string,
   rareFilter: PropTypes.string,
+  superTrunfo: PropTypes.bool,
+  trunfoFilter: PropTypes.bool,
 }.isRequired;
 
 export default CardList;

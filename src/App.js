@@ -19,6 +19,8 @@ class App extends React.Component {
     hasTrunfo: false,
     nameFilter: '',
     rareFilter: 'todas',
+    trunfoFilter: false,
+    disableFilter: false,
   };
 
   renderCheckbox = () => {
@@ -89,19 +91,28 @@ class App extends React.Component {
     }
   };
 
+  disableFilters = () => {
+    const { trunfoFilter } = this.state;
+    if (trunfoFilter === true) {
+      this.setState({ disableFilter: true, nameFilter: '', rareFilter: '' });
+    } else {
+      this.setState({ disableFilter: false });
+    }
+  };
+
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
-    }, () => { this.checkForm(); });
+    }, () => { this.checkForm(); this.disableFilters(); });
   };
 
   render() {
     const {
       name, description, attr1, attr2, attr3, image, savedCards,
       rarity, isSuperTrunfo, saveButtonDisabled, hasTrunfo,
-      nameFilter, rareFilter,
+      nameFilter, rareFilter, disableFilter, trunfoFilter,
     } = this.state;
     return (
       <div>
@@ -132,14 +143,15 @@ class App extends React.Component {
         />
         <Filters
           nameFilter={ nameFilter }
-          rareFilter={ rareFilter }
           onInputChange={ this.handleChange }
+          disableFilter={ disableFilter }
         />
         <CardList
           savedCards={ savedCards }
           deleteCard={ this.deleteCard }
           nameFilter={ nameFilter }
           rareFilter={ rareFilter }
+          trunfoFilter={ trunfoFilter }
         />
       </div>
     );

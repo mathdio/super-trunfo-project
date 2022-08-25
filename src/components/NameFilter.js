@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class NameFilter extends React.Component {
   render() {
-    const { nameFilter, onInputChange } = this.props;
+    const { nameFilter, onInputChange, disableFilter } = this.props;
     return (
       <input
         name="nameFilter"
@@ -12,6 +12,7 @@ class NameFilter extends React.Component {
         placeholder="Filtro por nome"
         value={ nameFilter }
         onChange={ onInputChange }
+        disabled={ disableFilter }
       />
     );
   }
@@ -20,6 +21,7 @@ class NameFilter extends React.Component {
 NameFilter.propTypes = {
   nameFilter: PropTypes.string,
   onInputChange: PropTypes.func,
+  disableFilter: PropTypes.bool,
 }.isRequired;
 
 export default NameFilter;

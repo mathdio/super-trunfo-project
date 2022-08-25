@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 class RareFilter extends React.Component {
   render() {
-    const { rareFilter, onInputChange } = this.props;
+    const { onInputChange, disableFilter } = this.props;
     return (
       <select
         name="rareFilter"
         data-testid="rare-filter"
         onChange={ onInputChange }
-        value={ rareFilter }
+        disabled={ disableFilter }
       >
         <option value="todas">todas</option>
         <option value="normal">normal</option>
@@ -21,8 +21,8 @@ class RareFilter extends React.Component {
 }
 
 RareFilter.propTypes = {
-  rareFilter: PropTypes.string,
   onInputChange: PropTypes.func,
+  disableFilter: PropTypes.bool,
 }.isRequired;
 
 export default RareFilter;

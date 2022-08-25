@@ -2,19 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NameFilter from './NameFilter';
 import RareFilter from './RareFilter';
+import TrunfoFilter from './TrunfoFilter';
 
 class Filters extends React.Component {
   render() {
-    const { nameFilter, rareFilter, onInputChange } = this.props;
+    const { nameFilter, onInputChange, disableFilter, trunfoFilter } = this.props;
     return (
       <div>
         <NameFilter
           nameFilter={ nameFilter }
           onInputChange={ onInputChange }
+          disableFilter={ disableFilter }
         />
         <RareFilter
-          rareFilter={ rareFilter }
           onInputChange={ onInputChange }
+          disableFilter={ disableFilter }
+        />
+        <TrunfoFilter
+          onInputChange={ onInputChange }
+          trunfoFilter={ trunfoFilter }
         />
       </div>
     );
@@ -23,8 +29,9 @@ class Filters extends React.Component {
 
 Filters.propTypes = {
   nameFilter: PropTypes.string,
-  rareFilter: PropTypes.string,
   onInputChange: PropTypes.func,
+  disableFilter: PropTypes.bool,
+  trunfoFilter: PropTypes.bool,
 }.isRequired;
 
 export default Filters;
