@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NameFilter from './NameFilter';
+import RareFilter from './RareFilter';
 
 class Filters extends React.Component {
   render() {
-    const { savedCards, nameFilter, onInputChange } = this.props;
+    const { nameFilter, rareFilter, onInputChange } = this.props;
     return (
       <div>
         <NameFilter
-          savedCards={ savedCards }
           nameFilter={ nameFilter }
+          onInputChange={ onInputChange }
+        />
+        <RareFilter
+          rareFilter={ rareFilter }
           onInputChange={ onInputChange }
         />
       </div>
@@ -18,8 +22,8 @@ class Filters extends React.Component {
 }
 
 Filters.propTypes = {
-  savedCards: PropTypes.array,
   nameFilter: PropTypes.string,
+  rareFilter: PropTypes.string,
   onInputChange: PropTypes.func,
 }.isRequired;
 

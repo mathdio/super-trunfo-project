@@ -18,6 +18,7 @@ class App extends React.Component {
     savedCards: [],
     hasTrunfo: false,
     nameFilter: '',
+    rareFilter: 'todas',
   };
 
   renderCheckbox = () => {
@@ -100,7 +101,7 @@ class App extends React.Component {
     const {
       name, description, attr1, attr2, attr3, image, savedCards,
       rarity, isSuperTrunfo, saveButtonDisabled, hasTrunfo,
-      nameFilter,
+      nameFilter, rareFilter,
     } = this.state;
     return (
       <div>
@@ -129,15 +130,16 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
         />
+        <Filters
+          nameFilter={ nameFilter }
+          rareFilter={ rareFilter }
+          onInputChange={ this.handleChange }
+        />
         <CardList
           savedCards={ savedCards }
           deleteCard={ this.deleteCard }
           nameFilter={ nameFilter }
-        />
-        <Filters
-          savedCards={ savedCards }
-          nameFilter={ nameFilter }
-          onInputChange={ this.handleChange }
+          rareFilter={ rareFilter }
         />
       </div>
     );

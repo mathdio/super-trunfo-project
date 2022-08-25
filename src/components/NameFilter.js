@@ -5,16 +5,14 @@ class NameFilter extends React.Component {
   render() {
     const { nameFilter, onInputChange } = this.props;
     return (
-      <div>
-        <input
-          name="nameFilter"
-          type="text"
-          data-testid="name-filter"
-          placeholder="Filtro por nome"
-          value={ nameFilter }
-          onChange={ onInputChange }
-        />
-      </div>
+      <input
+        name="nameFilter"
+        type="text"
+        data-testid="name-filter"
+        placeholder="Filtro por nome"
+        value={ nameFilter }
+        onChange={ onInputChange }
+      />
     );
   }
 }

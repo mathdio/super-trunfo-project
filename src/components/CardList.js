@@ -4,10 +4,16 @@ import Card from './Card';
 
 class CardList extends React.Component {
   render() {
-    const { savedCards, deleteCard, nameFilter } = this.props;
+    const { savedCards, deleteCard, nameFilter, rareFilter } = this.props;
     return (
       <div>
         {savedCards.filter((card) => card.name.match(nameFilter))
+          .filter((card) => {
+            if (rareFilter === 'todas') {
+              return card;
+            }
+            return card.rarity === rareFilter;
+          })
           .map((card) => {
             const {
               name, description, attr1, attr2,
@@ -44,6 +50,8 @@ class CardList extends React.Component {
 CardList.propTypes = {
   savedCards: PropTypes.array,
   deleteCard: PropTypes.func,
+  nameFilter: PropTypes.string,
+  rareFilter: PropTypes.string,
 }.isRequired;
 
 export default CardList;
