@@ -129,7 +129,11 @@ class App extends React.Component {
           cardRare={ rarity }
           cardTrunfo={ isSuperTrunfo }
         />
-        <CardList savedCards={ savedCards } deleteCard={ this.deleteCard } />
+        <CardList
+          savedCards={ savedCards }
+          deleteCard={ this.deleteCard }
+          nameFilter={ nameFilter }
+        />
         <Filters
           savedCards={ savedCards }
           nameFilter={ nameFilter }
