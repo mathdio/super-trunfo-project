@@ -96,7 +96,7 @@ class App extends React.Component {
     if (trunfoFilter === true) {
       this.setState({ disableFilter: true, nameFilter: '', rareFilter: '' });
     } else {
-      this.setState({ disableFilter: false });
+      this.setState({ disableFilter: false, nameFilter: '', rareFilter: 'todas' });
     }
   };
 
